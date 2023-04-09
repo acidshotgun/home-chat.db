@@ -9,3 +9,38 @@ button {
     margin-top: 25px;
     display: block;
 }
+
+.post {
+    display: block;
+    height: 800px;
+}
+
+.post__item {
+    margin-top: 15px;
+    display: flex;
+    width: 1000px;
+    height: 200px;
+    border: 2px solid black;
+}
+.post__img {
+    width: 200px;
+    height: 100%;
+    border: 1px solid black;
+}
+.post__img-pic {
+    height: 100%;
+}
+.post__content {
+    width: 100%;
+}
+.post__name {
+    width: 100%;
+    height: 10%;
+    border: 1px solid black;
+}
+.post__descr {
+    padding: 20px;
+    width: 100%;
+    height: 90%;
+    font-size: 30px;
+}
