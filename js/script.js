@@ -1,6 +1,7 @@
 'use strict';
 
 const btnSubmit = document.querySelector('.submit'),
+      form = document.querySelector('.form__selector'),
       input = document.querySelector('.input'),
       theme = document.querySelector('.theme');
 
@@ -11,7 +12,7 @@ btnSubmit.addEventListener('click', (event) => {
     input.value = '';
 });
 
-function postData() {
+const postData = (event) => {
     axios.post('http://localhost:3000/posts', {
         theme: theme.value,
         description: input.value,
@@ -23,7 +24,6 @@ function postData() {
     })
     .finaly(console.log('End'));
 }
-
 
 const post = document.querySelector('.post__container');
 
@@ -55,3 +55,47 @@ class Post {
 
 const cat = new Post(post, 'test', 'descr').render();
 
+
+
+
+//! Ерунда
+const dataList = document.querySelector('.data__list');
+const loadBtn = document.querySelector('.data__load');
+let listItem;
+let listItemEmail;
+let listItemName;
+
+loadBtn.addEventListener('click', () => getUsersData());
+
+function getUsersData() {
+    if (!listItem) {
+        axios.get('https://reqres.in/api/users?page=1')
+        .then(request => request.data.data.forEach(item => {
+            let { email, first_name } = item;
+            // console.log(`Пользователь: ${first_name}, email - ${email}`);
+
+            listItem = document.createElement('div');
+            listItem.classList.add('data__list-item');
+            dataList.append(listItem);
+
+            listItemEmail = document.createElement('div');
+            listItemEmail.classList.add('data__list-email');
+            listItem.append(listItemEmail);
+            listItemEmail.innerText = email;
+
+            listItemName = document.createElement('div');
+            listItem.append(listItemName);
+            listItemName.innerText = first_name;
+        }))
+    .catch(() => console.log('Произошла ошибка'))
+    .finally(console.log('Процесс завершен'))
+    }
+}
+
+
+// axios.post('https://reqres.in/api/users', {
+//     name: 'Джамболат Касаев',
+//     job: 'leader',
+// })
+// .then(request => console.log(request.data))
+// .catch(() => console.log('Произошла ошибка'))
