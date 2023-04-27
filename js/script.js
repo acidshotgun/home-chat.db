@@ -1,5 +1,7 @@
 'use strict';
 
+// const { default: axios } = require("axios");
+
 const btnSubmit = document.querySelector('.submit'),
       form = document.querySelector('.form__selector'),
       input = document.querySelector('.input'),
@@ -74,6 +76,7 @@ function getUsersData() {
             let { email, first_name } = item;
             // console.log(`Пользователь: ${first_name}, email - ${email}`);
 
+            // Лушче классы сделать заранее
             listItem = document.createElement('div');
             listItem.classList.add('data__list-item');
             dataList.append(listItem);
@@ -99,3 +102,7 @@ function getUsersData() {
 // })
 // .then(request => console.log(request.data))
 // .catch(() => console.log('Произошла ошибка'))
+
+
+axios.get('https://randomuser.me/api/')
+.then(data => console.log(data));
